@@ -33,11 +33,21 @@ def doRegister(request):
     dob = request.POST['dob']
     user = request.POST['username']
     password = request.POST['password']
-    cus = Customer(phonenumber=phonenumber, email=email, dob=dob, username=user, password=password)
-    fullname = Fullname(firstname=firstname, midname=midname, lastname=lastname)
-    controls.register(cus,fullname)
+    customers = Customer.objects.raw("SELECT ID FROM customer WHERE username = %s ",[user])
+    print(len(customers))
+    if(len(customers)>0):
+        return HttpResponseRedirect("/polls/register")
+    cus = Customer.objects.create(phonenumber=phonenumber, email=email, dob=dob, username=user, password=password)
+    fullname = Fullname.objects.create(customerid = cus, firstname=firstname, midname=midname, lastname=lastname)
+
+    cus.save()
+    #name = Fullname(customerid = customer, firstname = fullname.firstname, midname=fullname.secondname, lastname = fullname.lastname)
+    fullname.save()
+
+    return HttpResponseRedirect("/polls/login")
     #print(cus[0].username)
-   
+def home(request):
+      return render(request, 'views/home.html')
 def get_name(request):
     # if this is a POST request we need to process the form data
     if request.method == 'GET':
