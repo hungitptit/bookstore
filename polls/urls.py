@@ -15,4 +15,7 @@ urlpatterns = [
 	path('doRegister', views.doRegister, name='doRegister'),
     path('accounts/', include('django.contrib.auth.urls')), # new
     path('home', views.home, name = 'home'),
+    path('addToCart/<int:itemid>', views.addToCart, name='addToCart'),
+    
+    
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

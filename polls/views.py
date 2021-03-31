@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import NameForm, LoginForm, RegistrationForm, BookCreate
 from . import controls
 from django.http import HttpResponse
-from .models import Customer, Fullname, Address, Item
+from .models import Customer, Fullname, Address, Item, Order, Cart
 from .forms import NameForm
 from django.http import HttpResponseRedirect
 def index(request):
@@ -16,8 +16,10 @@ def login(request):
 
 
 def doLogin(request):
+   
     user = request.POST['username']
     password = request.POST['password']
+    request.session['username'] = user
     return controls.login(user,password)
 	
 def register(request):
@@ -62,3 +64,14 @@ def upload(request):
             return HttpResponse("""your form is wrong, reload on <a href = "{{ url : 'index'}}">reload</a>""")
     else:
         return render(request, 'book/upload_form.html', {'upload_form':upload})
+
+def addToCart(request, itemid):
+    username = request.session['username']
+    customer = Customer.objects.filter(username=username)
+    item = Item.objects.filter(id=itemid)
+    order = Order.objects.create(customerid=customer[0])
+    order.save()
+    cart = Cart.objects.create(orderid=order,itemid=item[0])
+    cart.save()
+    return HttpResponse(customer[0].id)
+
