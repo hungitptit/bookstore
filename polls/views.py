@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .forms import NameForm, LoginForm, RegistrationForm
+from .forms import NameForm, LoginForm, RegistrationForm, BookCreate
 from . import controls
 from django.http import HttpResponse
-from .models import Customer, Fullname, Address
+from .models import Customer, Fullname, Address, Item
 from .forms import NameForm
 from django.http import HttpResponseRedirect
 def index(request):
@@ -47,22 +47,18 @@ def doRegister(request):
     return HttpResponseRedirect("/polls/login")
     #print(cus[0].username)
 def home(request):
-      return render(request, 'views/home.html')
-def get_name(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'GET':
-        # create a form instance and populate it with data from the request:
-        form = LoginForm(request.GET)
-        # check whether it's valid:
-        if form.is_valid():
-        	print ("success")
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            #return HttpResponseRedirect('/thanks/')
+   
+    shelf = Item.objects.all()
+    return render(request, 'views/home.html', {'shelf': shelf})
 
-    # if a GET (or any other method) we'll create a blank form
+def upload(request):
+    upload = BookCreate()
+    if request.method == 'POST':
+        upload = BookCreate(request.POST, request.FILES)
+        if upload.is_valid():
+            upload.save()
+            return redirect('index')
+        else:
+            return HttpResponse("""your form is wrong, reload on <a href = "{{ url : 'index'}}">reload</a>""")
     else:
-        form = LoginForm()
-
-    return render(request, 'name.html', {'form': form})
+        return render(request, 'book/upload_form.html', {'upload_form':upload})

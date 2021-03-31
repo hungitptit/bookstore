@@ -9,7 +9,7 @@ app_name = 'polls'
 urlpatterns = [
     path('', views.index, name='index'),
     path('login/', views.login, name='login'),
-    path('name/', views.get_name, name='name'),
+   
 	path('doLogin', views.doLogin, name='doLogin'),
 	path('register', views.register, name='register'),
 	path('doRegister', views.doRegister, name='doRegister'),
