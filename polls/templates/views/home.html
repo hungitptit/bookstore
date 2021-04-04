@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% load static  
 <html>
 <head>
     <title>Home</title>
@@ -19,9 +19,9 @@ img{
  
 </nav>
 <br>
-{% block content %}
+{% block content  
 <div class="card-columns">
-    {% for item in shelf %}
+    {% for item in shelf  
     
     <div class="card" style="width: 18rem;">
   <!--img class="card-img-top" src="{{ book.picture.url }}">
@@ -30,7 +30,7 @@ img{
     <p class="card-text">{{ book.describe }}</p>
    <div class="card-footer bg-transparent border-dark">
    <p class="card-title">{{book.author}}</p-->
-    <img class="card-img-top" src="{% static item.picture  %}">
+    <img class="card-img-top" src="{% static item.picture   ">
     <div class="card-body">
     <h5 class="card-title">{{ item.name }}</h5>
     <p class="card-text">{{ item.price }} đ</p>
@@ -43,8 +43,8 @@ img{
     </div>
   </div>
 </div>
-    {% endfor %}
+    {% endfor  
 </div>
-{% endblock %}
+{% endblock  
 </body>
 </html>

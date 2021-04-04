@@ -9,7 +9,7 @@ def login(user, password):
     cus = Customer.objects.raw("SELECT * FROM customer WHERE username = %s AND password=%s",[user,password])
     #print(cus[0].username)
     if len(cus)>0:
-        return HttpResponseRedirect("/polls/home")
+        return HttpResponseRedirect("/polls/index")
     return HttpResponseRedirect("/polls/login")
 
 def register(customer, fullname):

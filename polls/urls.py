@@ -7,7 +7,7 @@ from . import views
 app_name = 'polls'
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    #path('', views.index, name='index'),
     path('login/', views.login, name='login'),
    
 	path('doLogin', views.doLogin, name='doLogin'),
@@ -15,7 +15,7 @@ urlpatterns = [
 	path('doRegister', views.doRegister, name='doRegister'),
     path('accounts/', include('django.contrib.auth.urls')), # new
     path('home', views.home, name = 'home'),
-    path('addToCart/<int:itemid>', views.addToCart, name='addToCart'),
-    
+    path('addToCart', views.addToCart, name='addToCart'),
+    path('index', views.index, name = 'index'),
     
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

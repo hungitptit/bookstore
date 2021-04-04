@@ -5,8 +5,14 @@ from django.http import HttpResponse
 from .models import Customer, Fullname, Address, Item, Order, Cart
 from .forms import NameForm
 from django.http import HttpResponseRedirect
+
+
+
 def index(request):
-    return HttpResponse("Hello anh em!!!")
+
+    shelf = Item.objects.all()
+    return render(request, 'views/index.html',  {'shelf': shelf})
+    
 
 def login(request):
     # if this is a POST request we need to process the form data
@@ -65,9 +71,11 @@ def upload(request):
     else:
         return render(request, 'book/upload_form.html', {'upload_form':upload})
 
-def addToCart(request, itemid):
+def addToCart(request):
     username = request.session['username']
     customer = Customer.objects.filter(username=username)
+    itemid = request.POST['item_id']
+    print(itemid)
     item = Item.objects.filter(id=itemid)
     order = Order.objects.create(customerid=customer[0])
     order.save()
