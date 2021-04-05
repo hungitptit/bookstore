@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 
 
 def index(request):
-
+    
     shelf = Item.objects.all()
     return render(request, 'views/index.html',  {'shelf': shelf})
     
