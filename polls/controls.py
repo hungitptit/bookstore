@@ -19,7 +19,7 @@ def register(customer, fullname):
         return HttpResponseRedirect("/polls/register")
     
     customer.save()
-    #name = Fullname(customerid = customer, firstname = fullname.firstname, midname=fullname.secondname, lastname = fullname.lastname)
+    name = Fullname(customerid = customer, firstname = fullname.firstname, midname=fullname.secondname, lastname = fullname.lastname)
     name.save()
 
     return HttpResponseRedirect("/polls/login")

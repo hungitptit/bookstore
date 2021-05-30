@@ -223,7 +223,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<img src="{% static 'images/slide1.jpg' %}" alt="" />
 				<!--Slider Description example-->
 				<div class="slide-desc">
-					<h3>You are what you read, get to know yourself at HBooks</h3>
+					<h3>Between the pages of a book is a lovely place to be</h3>
 				</div>
 			</li>
 			<li>
@@ -236,7 +236,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<li>
 				<img src="{% static 'images/slide3.jpg' %}" alt="" />
 				<div class="slide-desc">
-					<h3 style="color: #FF6C00">All you are looking for is here</h3>
+					<h3 style="color: #FF6C00">Welcome to our home !</h3>
 				</div>
 			</li>
 		</ul>
@@ -279,9 +279,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 															<p class="card-text">{{ item.price }} đ</p>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
-															<form action="/polls/addToCart" method="post">
+															<form action="#" method="post">
 																<fieldset>
 																	{% csrf_token %}
+																	<input type="hidden" name="cmd" value="_cart">
+																	<input type="hidden" name="add" value="1">
+																	<input type="hidden" name="business" value=" ">
 																	<input type="hidden" name="item_id" value="{{ item.id }} "/>
 																	<input type="hidden" name="item_name" value="{{ item.name }} "/>
 																	<input type="hidden" name="amount" value="{{ item.price }} "/>
@@ -417,14 +420,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="col-md-3 w3_footer_grid">
 					<h3>Category</h3>
 					<ul class="info"> 
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="groceries.html">Groceries</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="household.html">Household</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="personalcare.html">Personal Care</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="packagedfoods.html">Packaged Foods</a></li>
-						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="beverages.html">Beverages</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Science</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Literature</a></li>
+						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="#">Comic</a></li>
+						
 					</ul>
 				</div>
-				<div class="col-md-3 w3_footer_grid">
+				<!--div class="col-md-3 w3_footer_grid">
 					<h3>Profile</h3>
 					<ul class="info"> 
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="products.html">Store</a></li>
@@ -432,7 +434,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="login.html">Login</a></li>
 						<li><i class="fa fa-arrow-right" aria-hidden="true"></i><a href="registered.html">Create Account</a></li>
 					</ul>
-				</div>
+				</div-->
 				<div class="clearfix"> </div>
 			</div>
 		</div>
